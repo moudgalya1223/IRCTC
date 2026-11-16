@@ -1,17 +1,16 @@
 import { Component, HostListener, inject, output } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { NotificationPopup } from '../shared/components/notification-popup/notification-popup';
 import { NotificationService } from '../shared/services/notification.service';
-import { ThemeToggle } from '../shared/components/theme-toggle/theme-toggle';
 import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NotificationPopup, ThemeToggle],
+  imports: [ReactiveFormsModule, NotificationPopup, RouterLink],
   templateUrl: './login.html',
 })
 export class Login {
@@ -35,6 +34,10 @@ export class Login {
   protected close(): void {
     this.closed.emit();
     this.router.navigate(['/home']);
+  }
+
+  protected openRegistration(): void {
+    this.router.navigate(['/classic-enroll']);
   }
 
   protected submit(): void {

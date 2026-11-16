@@ -1,20 +1,14 @@
 import logging
 
 from core.security.jwt import create_access_token
+from core.shared.cors import configure_cors
 from domain.signin import irctccustomsignin
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 
 app = FastAPI()
-app.add_middleware(
-	CORSMiddleware,
-	allow_origins=["http://localhost:4200", "http://127.0.0.1:4200"],
-	allow_credentials=False,
-	allow_methods=["POST"],
-	allow_headers=["Content-Type"],
-)
+configure_cors(app)
 signin_service = irctccustomsignin()
 logger = logging.getLogger(__name__)
 

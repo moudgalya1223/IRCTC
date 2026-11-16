@@ -16,6 +16,12 @@ export const routes: Routes = [
     title: 'IRCTC - Login',
   },
   {
+    path: 'classic-enroll',
+    loadComponent: () =>
+      import('./register/register').then((component) => component.Register),
+    title: 'IRCTC - Register',
+  },
+  {
     path: 'train-search',
     canActivate: [authGuard],
     loadComponent: () =>

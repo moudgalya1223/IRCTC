@@ -1,5 +1,6 @@
 <div
-  class="fixed inset-0 z-50 overflow-y-auto bg-gradient-to-br from-blue-950/90 via-blue-800/80 to-sky-500/70 p-4 backdrop-blur-md sm:p-8"
+  class="fixed inset-0 z-50 overflow-y-auto p-4 backdrop-blur-md sm:p-8"
+  style="background-image: linear-gradient(rgb(15 23 42 / 72%), rgb(15 23 42 / 72%)), url('/assets/app-background.png'); background-attachment: fixed; background-position: center; background-size: cover;"
   role="presentation"
   (click)="close()"
 >
@@ -26,7 +27,12 @@
       </p>
       <div class="flex flex-wrap gap-3 text-sm text-white/90">
         <span class="rounded-lg border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">Secure login</span>
-        <span class="rounded-lg border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">Fast train search</span>
+        <a
+          routerLink="/train-search"
+          class="rounded-lg border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm transition hover:bg-white/20"
+        >
+          Fast train search
+        </a>
       </div>
     </div>
 
@@ -43,7 +49,6 @@
             <p class="mt-2 text-sm text-blue-100">Sign in to your IRCTC account</p>
           </div>
           <div class="flex items-center gap-2">
-            <app-theme-toggle />
             <button
               type="button"
               aria-label="Close login dialog"
@@ -144,7 +149,7 @@
 
         <p class="mt-6 text-center text-sm text-blue-100">
           New to IRCTC?
-          <button type="button" class="font-bold text-white underline underline-offset-4">Create an account</button>
+          <button type="button" class="font-bold text-white underline underline-offset-4" (click)="openRegistration()">Create an account</button>
         </p>
       </div>
     </div>

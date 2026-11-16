@@ -12,7 +12,7 @@ body {
   background-color: #dbeafe;
   background-image:
     linear-gradient(rgb(15 23 42 / 18%), rgb(15 23 42 / 18%)),
-    url('/assets/app-background.jpeg');
+    url('/assets/app-background.png');
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
