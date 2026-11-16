@@ -1,0 +1,39 @@
+<main class="min-h-screen bg-slate-100/60 px-6 py-10 dark:bg-slate-950/60">
+  <section class="mx-auto max-w-5xl">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-blue-600">IRCTC</p>
+        <h1 class="mt-2 text-4xl font-bold text-blue-950 dark:text-white">Search trains</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <app-theme-toggle />
+        <app-profile />
+      </div>
+    </div>
+
+    <form class="mt-10 grid gap-5 rounded-2xl border border-white/50 bg-white/75 p-6 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-slate-900/75 sm:grid-cols-2">
+      <label class="block">
+        <span class="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">From</span>
+        <input
+          type="text"
+          placeholder="Departure station"
+          class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">To</span>
+        <input
+          type="text"
+          placeholder="Arrival station"
+          class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+        />
+      </label>
+      <button
+        type="submit"
+        class="rounded-lg bg-blue-600 px-6 py-3 font-bold text-white hover:bg-blue-700 sm:col-span-2"
+      >
+        Search trains
+      </button>
+    </form>
+  </section>
+</main>

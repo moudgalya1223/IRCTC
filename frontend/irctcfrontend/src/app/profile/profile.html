@@ -1,0 +1,40 @@
+<div class="relative">
+  <button
+    type="button"
+    class="flex items-center gap-3 rounded-full bg-white px-4 py-2 font-semibold text-blue-800 shadow-lg hover:bg-blue-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+    [attr.aria-expanded]="isOpen()"
+    aria-label="Open profile menu"
+    (click)="toggle()"
+  >
+    <span class="grid h-9 w-9 place-items-center rounded-full bg-emerald-500 text-white">♙</span>
+    <span class="hidden sm:inline">IRCTC User</span>
+    <span class="text-sm">{{ isOpen() ? '▲' : '▼' }}</span>
+  </button>
+
+  @if (isOpen()) {
+    <div class="absolute right-0 top-14 z-40 w-80 rounded-2xl border border-orange-200 bg-orange-50 p-3 shadow-2xl dark:border-slate-600 dark:bg-slate-800">
+      <div class="mb-3 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-600 dark:bg-slate-700">
+        <p class="text-sm text-slate-500 dark:text-slate-300">Account</p>
+        <p class="font-bold text-blue-900 dark:text-white">IRCTC User</p>
+      </div>
+      <div class="divide-y divide-orange-200 dark:divide-slate-600">
+        <button type="button" class="flex w-full items-center gap-4 px-3 py-4 text-left text-slate-800 hover:text-orange-600 dark:text-white">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-orange-600 shadow">♙</span>
+          My Profile
+        </button>
+        <button type="button" class="flex w-full items-center gap-4 px-3 py-4 text-left text-slate-800 hover:text-orange-600 dark:text-white">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-orange-600 shadow">▣</span>
+          My Transactions
+        </button>
+        <button type="button" class="flex w-full items-center gap-4 px-3 py-4 text-left text-slate-800 hover:text-orange-600 dark:text-white">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-orange-600 shadow">↗</span>
+          Feedback
+        </button>
+        <button type="button" class="flex w-full items-center gap-4 px-3 py-4 text-left text-slate-800 hover:text-orange-600 dark:text-white" (click)="logout()">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white text-orange-600 shadow">↪</span>
+          Logout
+        </button>
+      </div>
+    </div>
+  }
+</div>

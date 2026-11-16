@@ -1,0 +1,71 @@
+<main
+  class="min-h-screen transition-colors"
+  [class.bg-slate-100/60]="!isDarkMode()"
+  [class.bg-slate-950/60]="isDarkMode()"
+>
+  <header
+    class="flex items-center justify-between px-6 py-3 shadow-sm transition-colors sm:px-12"
+    [class.bg-white/80]="!isDarkMode()"
+    [class.bg-slate-900/80]="isDarkMode()"
+  >
+    <img
+      src="/assets/logo_irctc.webp"
+      alt="IRCTC logo"
+      class="h-16 w-auto object-contain"
+    />
+    <div class="flex items-center gap-4">
+      <app-theme-toggle />
+      <img
+        src="/assets/secondry-logo_irctc.webp"
+        alt="Indian Railways logo"
+        class="h-14 w-14 rounded-full object-contain"
+      />
+    </div>
+  </header>
+
+  <section class="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-2 lg:items-center lg:px-12">
+    <div class="order-2 lg:order-1">
+      <p class="text-xs font-bold uppercase tracking-widest text-blue-600">
+        Indian Railway Catering and Tourism Corporation
+      </p>
+      <h1
+        class="my-4 text-4xl font-bold sm:text-6xl"
+        [class.text-blue-950]="!isDarkMode()"
+        [class.text-white]="isDarkMode()"
+      >
+        Book your next journey with IRCTC
+      </h1>
+      <p
+        class="max-w-xl text-lg"
+        [class.text-slate-600]="!isDarkMode()"
+        [class.text-slate-300]="isDarkMode()"
+      >
+        Search trains, check availability, and plan your travel from one place.
+      </p>
+      <button
+        type="button"
+        routerLink="/train-search"
+        class="mt-6 flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-bold text-white transition-colors hover:bg-blue-700"
+      >
+        <svg
+          aria-hidden="true"
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path d="M5 17h14M7 17V6h10v11M5 17a2 2 0 1 0 4 0m6 0a2 2 0 1 0 4 0M7 10h10M9 6V4h6v2" />
+        </svg>
+        Search trains
+      </button>
+    </div>
+
+    <img
+      src="/assets/vandebarhart.webp"
+      alt="Vande Bharat Express train"
+      class="order-1 h-64 w-full rounded-2xl object-cover shadow-xl lg:order-2 lg:h-96"
+    />
+  </section>
+
+</main>
