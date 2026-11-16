@@ -1,4 +1,13 @@
-import { Component, HostListener, inject, output } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  WritableSignal,
+  inject,
+  output,
+  signal,
+} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -13,18 +22,39 @@ import { LoginService } from './services/login.service';
   imports: [ReactiveFormsModule, NotificationPopup, RouterLink],
   templateUrl: './login.html',
 })
-export class Login {
+export class Login implements OnInit, OnDestroy {
   private readonly formBuilder = inject(FormBuilder);
   protected readonly notification = inject(NotificationService);
   private readonly loginService = inject(LoginService);
   private readonly router = inject(Router);
   protected readonly notificationMessage = this.notification.notification;
+  protected readonly heroTitle = signal('');
+  protected readonly heroAccent = signal('');
+  protected readonly heroDescription = signal('');
   protected readonly loginForm = this.formBuilder.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
   protected isSubmitting = false;
   readonly closed = output<void>();
+  private typingTimer?: ReturnType<typeof setTimeout>;
+
+  ngOnInit(): void {
+    this.typeText('Journey smarter,', this.heroTitle, () => {
+      this.typeText('travel together.', this.heroAccent, () => {
+        this.typeText(
+          'Access bookings, live train status, and seamless travel planning from one secure portal.',
+          this.heroDescription,
+        );
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.typingTimer) {
+      clearTimeout(this.typingTimer);
+    }
+  }
 
   @HostListener('document:keydown.escape')
   protected closeOnEscape(): void {
@@ -60,6 +90,28 @@ export class Login {
         this.notification.showError(this.getErrorMessage(error));
       },
     });
+  }
+
+  private typeText(
+    text: string,
+    target: WritableSignal<string>,
+    onComplete?: () => void,
+  ): void {
+    let characterIndex = 0;
+    target.set('');
+
+    const typeNextCharacter = (): void => {
+      target.set(text.slice(0, characterIndex + 1));
+      characterIndex += 1;
+
+      if (characterIndex < text.length) {
+        this.typingTimer = setTimeout(typeNextCharacter, 45);
+      } else {
+        onComplete?.();
+      }
+    };
+
+    this.typingTimer = setTimeout(typeNextCharacter, 250);
   }
 
   private getErrorMessage(error: HttpErrorResponse): string {
